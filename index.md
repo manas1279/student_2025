@@ -1,19 +1,19 @@
 ---
 layout: base
-title: John Tab 
+title: Manas Tab
 hide: true
 ---
 
 ### Me and Team
 
-Hi! My name is John.
+Hi! My name is Manas
 
 | Role         | Name     | Repo Location                       | Stream                | Repo Name |
 |--------------|----------|-------------------------------------|-----------------------|-----------|
-| Scrum Master | John     | github.com/jm1021/student           | upstream (OCS fork)   | student   |
-| Scrummer     | Torin    | github.com/torin/student            | downstream (fork)     | student   |
-| Scrummer     | Avantika | github.com/avantika/student         | downstream (fork)     | student   |
-| Scrummer     | Aadit    | github.com/aaadit/student           | downstream (fork)     | student   |
+| Scrum Master | Manas     | github.com/jm1021/student           | upstream (OCS fork)   | student   |
+| Scrummer     | Advay    | github.com/torin/student            | downstream (fork)     | student   |
+| Scrummer     | Sai | github.com/avantika/student         | downstream (fork)     | student   |
+| Scrummer     | Akshay    | github.com/aaadit/student           | downstream (fork)     | student   |
 
 
 ## Links to Learning
