@@ -3,6 +3,9 @@ PORT ?= 4600
 REPO_NAME ?= student
 LOG_FILE = /tmp/jekyll$(PORT).log
 
+# Add user gem bin directory to PATH for bundler
+export PATH := $(HOME)/.gem/ruby/3.4.0/bin:$(PATH)
+
 SHELL = /bin/bash -c
 .SHELLFLAGS = -e # Exceptions will stop make, works on MacOS
 
