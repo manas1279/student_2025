@@ -63,11 +63,17 @@ def convert_notebook_to_markdown_with_front_matter(notebook_file):
         process_mermaid_cells(notebook)
         exporter = MarkdownExporter()
         markdown, _ = exporter.from_notebook_node(notebook)
-        front_matter_content = (
-            "---\n"
-            + "\n".join(f"{key}: {value}" for key, value in front_matter.items())
-            + "\n---\n\n"
-        )
+        # Use yaml.safe_dump to produce valid YAML with proper quoting and boolean casing
+        try:
+            dumped = yaml.safe_dump(front_matter, default_flow_style=False, sort_keys=False)
+            front_matter_content = f"---\n{dumped}---\n\n"
+        except Exception:
+            # Fallback to simple join if dumping fails
+            front_matter_content = (
+                "---\n"
+                + "\n".join(f"{key}: {value}" for key, value in front_matter.items())
+                + "\n---\n\n"
+            )
         markdown_with_front_matter = front_matter_content + markdown
         destination_path = get_relative_output_path(notebook_file)
         ensure_directory_exists(destination_path)

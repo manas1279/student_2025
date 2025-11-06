@@ -10,7 +10,7 @@ SHELL = /bin/bash -c
 .SHELLFLAGS = -e # Exceptions will stop make, works on MacOS
 
 # Phony Targets, makefile housekeeping for below definitions
-.PHONY: default server issues convert clean stop
+.PHONY: default server issues convert clean stop normalize
 
 # List all .ipynb files in the _notebooks directory
 NOTEBOOK_FILES := $(shell find _notebooks -name '*.ipynb')
@@ -105,8 +105,13 @@ cspserver: stop cspconvert
 	@@until [ -f $(LOG_FILE) ]; do sleep 1; done
 
 # Convert .ipynb files to Markdown with front matter
-convert: $(MARKDOWN_FILES)
-cspconvert: $(CSP_MARKDOWN_FILES)
+convert: normalize $(MARKDOWN_FILES)
+cspconvert: normalize $(CSP_MARKDOWN_FILES)
+
+# Normalize notebooks before conversion
+normalize:
+	@echo "Normalizing notebooks..."
+	@python3 scripts/normalize_notebooks.py
 
 # Convert .ipynb files to Markdown with front matter, preserving directory structure
 $(DESTINATION_DIRECTORY)/%_IPYNB_2_.md: _notebooks/%.ipynb
